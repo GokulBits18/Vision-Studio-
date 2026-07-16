@@ -1,0 +1,16 @@
+# --- IGNORE THESE FILES (Don't upload) ---
+
+# Frontend dependencies
+frontend/node_modules/
+frontend/dist/
+
+# Backend junk & Environment variables
+backend/__pycache__/
+backend/.env
+
+# Large Model Files
+backend/*.pt
+backend/*.pb
+
+# Virtual Environment
+vision/
