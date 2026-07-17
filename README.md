@@ -1,76 +1,98 @@
 # Vision Studio
 
-Vision Studio is a comprehensive, full-stack Artificial Intelligence application focused on advanced computer vision capabilities. It bridges a responsive, modern frontend with a powerful Python backend to deliver real-time image processing, object detection, and AI-driven enhancements.
+Vision Studio is a comprehensive, full-stack Artificial Intelligence application designed to process, analyze, and enhance media in real-time. It bridges a lightning-fast modern frontend with a powerful, hybrid-cloud Python backend to deliver advanced computer vision capabilities directly to the user.
 
-##  Features
+##  Core Features
 
-Based on the core modules of the application, Vision Studio includes:
-* **Smart OCR (Optical Character Recognition):** Extract and process text seamlessly from images.
-* **Hand Gesture Canvas:** Real-time gesture recognition for interactive control.
-* **Resolution Engine (EDSR):** Super-resolution capabilities to upscale and enhance image quality without losing detail.
-* **AI Filters & Smart Image Editor:** Apply advanced, intelligent visual filters and edits to media.
-* **Professional Look AI:** Specialized processing for professional-grade photo enhancements.
-* **File History & Management:** Keep track of processed media and user sessions.
+*   ** Air Canvas:** Real-time hand gesture recognition for interactive, touch-free drawing.
+*   ** Live Filter & Smart Editor:** Dynamic, AI-driven visual effects and intelligent image manipulation applied on the fly.
+*   ** Professional Look:** High-end image processing and stylization for professional-grade photo enhancements.
+*   ** 4K Engine:** Upscaling image resolution and restoring crisp details without losing quality.
+*   ** Smart OCR & Audio:** Seamless text extraction directly from images, paired with high-quality Text-to-Speech (TTS) synthesis to read the output aloud.
 
-##  Tech Stack
+## Tech Stack & Architecture
 
 **Frontend:**
-* React.js (Bootstrapped with Vite for high performance)
-* JavaScript (JSX)
-* CSS / Tailwind (for responsive UI components)
+*   React.js (Bootstrapped with Vite for high performance)
+*   JavaScript (JSX) & Tailwind/CSS for responsive UI components
 
-**Backend & AI:**
-* Python
-* FastAPI / Uvicorn (for high-speed API endpoints and Websockets)
-* Ultralytics (YOLOv8 & YOLO26n for state-of-the-art Object Detection)
-* OpenCV / EDSR (Enhanced Deep Residual Networks for image super-resolution)
+**Backend & AI Inference:**
+*   Python & FastAPI (Handling high-speed API endpoints and Websockets)
+*   OpenCV (Core image processing and media routing)
+*   **YOLOv8 & Custom YOLO Variants:** For state-of-the-art real-time Object Detection and tracking.
+*   **EDSR (Enhanced Deep Residual Networks):** Powering the 4K super-resolution engine.
+*   **Kokoro-82M:** A highly efficient, 82-million parameter TTS model utilized for natural-sounding audio generation without bottlenecking local VRAM.
 
-**Data & Model Sourcing:**
-* **Hugging Face:** Utilized for accessing and integrating pre-trained transformer models and computer vision pipelines.
-* **Kaggle:** Leveraged for sourcing robust training datasets to fine-tune and evaluate the AI models used in this project.
+**Cloud & Infrastructure:**
+*   **Kaggle GPU Servers:** To overcome local hardware limitations, the heavy deep learning inference for the "Professional Look" pipeline is offloaded and hosted remotely on Kaggle's GPU environment, connected to the backend via a secure API tunnel.
+*   **Hugging Face:** Leveraged for integrating advanced pre-trained transformer pipelines.
 
 ## Getting Started
 
-
 ### Prerequisites
-Make sure you have Node.js and Python installed on your local machine. 
+Make sure you have Node.js and Python 3.x installed on your local machine.
 
 ### 1. Clone the repository
-\`\`\`bash
-git clone https://github.com/GokulBits18/Vision-Studio--.git
+```bash
+git clone [https://github.com/GokulBits18/Vision-Studio--.git](https://github.com/GokulBits18/Vision-Studio--.git)
 cd Vision-Studio--01
-\`\`\`
 
-### 2. Frontend Setup
-Navigate to the frontend directory, install dependencies, and start the Vite development server:
-\`\`\`bash
+ Frontend Setup
+
+Navigate to the frontend directory, install dependencies, and start the Vite development
+
 cd frontend
 npm install
 npm run dev
-\`\`\`
+server
 
-### 3. Backend Setup
+ Backend Setup
+
 Navigate to the backend directory, set up your virtual environment, and install the required Python packages:
-\`\`\`bash
+
 cd ../backend
 python -m venv vision
+
 # Activate virtual environment (Windows)
 vision\Scripts\activate
-# Activate virtual environment (Mac/Linux)
-source vision/bin/activate
 
+# Install dependencies
 pip install -r requirements.txt
-\`\`\`
-*Note: Make sure to create a `.env` file in the backend folder for any necessary API keys or environment variables.*
 
-### 4. Run the Backend Server
+Note: Make sure to create a .env file in the backend folder to store any necessary API keys or tunneling credentials.
+
+Run the Backend Server
+
 Start the Uvicorn server to power the AI endpoints:
-\`\`\`bash
+
 uvicorn main:app --reload
-\`\`\`
 
-##  Model Weights
-Due to GitHub file size limits, large pre-trained model files (like `.pt` and `.pb` files) are not hosted in this repository. Ensure you have downloaded the necessary weights (e.g., `yolov8n.pt`, `EDSR_x4.pb`) and placed them in the `backend/` directory before running the server.
+Model Weights & Remote Inference
 
-##  Author
-**Gokul**
+Due to GitHub file size limits, large pre-trained model files (like .pt and .pb files) are not hosted in this repository.
+
+Local Models: Ensure you have downloaded the necessary weights (e.g., yolov8n.pt, EDSR_x4.pb) and placed them in the backend/ directory before starting the local server.
+
+Remote Models: The "Professional Look" feature requires an active connection to your configured Kaggle Notebook/Server tunnel.
+
+
+Author
+
+0100011101101111011010110111010101101100
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
