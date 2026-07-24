@@ -1,0 +1,55 @@
+# 1. Install missing dependencies in the Kaggle environment
+!pip install -q diffusers transformers accelerate gradio opencv-python
+
+import torch
+import numpy as np
+import gradio as gr
+from diffusers import StableDiffusionInpaintPipeline
+from PIL import Image
+
+print(" Loading Stable Diffusion onto Kaggle T4 GPU...")
+
+# 2. Initialize the model with float16 precision
+pipe = StableDiffusionInpaintPipeline.from_pretrained(
+    "runwayml/stable-diffusion-inpainting",
+    variant="fp16",
+    torch_dtype=torch.float16
+)
+pipe = pipe.to("cuda")
+
+# 3. Enable Attention Slicing to guarantee it passes memory limits safely
+pipe.enable_attention_slicing()
+
+def generate_suit(image, mask):
+    # Strict PIL formatting for native HuggingFace compatibility
+    pil_image = Image.fromarray(image).convert("RGB")
+    pil_mask = Image.fromarray(mask).convert("L") 
+    
+    # Absolute resolution normalization to match our backend padding architecture
+    pil_image = pil_image.resize((512, 512), Image.LANCZOS)
+    pil_mask = pil_mask.resize((512, 512), Image.LANCZOS)
+
+    prompt = "A highly detailed, ultra-photorealistic professional corporate headshot, man wearing a high-end solid navy blue suit, crisp white button-down shirt, perfectly tailored, smooth fabric, bright cinematic studio lighting, 8k resolution"
+    negative_prompt = "text, watermark, writing, letters, typography, logo, signature, caption, poster, magazine cover, dots, patterns, stripes, casual, messy clothes, outdoor, trees, nature, noisy, artifacts, distorted, poorly drawn"
+    
+    print(" Model processing input data...")
+    output = pipe(
+        prompt=prompt,
+        negative_prompt=negative_prompt,
+        image=pil_image,
+        mask_image=pil_mask,
+        num_inference_steps=20,
+        guidance_scale=7.5
+    ).images[0]
+    
+    return np.array(output)
+
+# 4. Expose the server interface
+print(" Starting API Tunnel...")
+iface = gr.Interface(
+    fn=generate_suit,
+    inputs=[gr.Image(type="numpy"), gr.Image(type="numpy")],
+    outputs="image"
+)
+
+iface.launch(share=True, show_error=True)
