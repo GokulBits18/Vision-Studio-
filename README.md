@@ -87,8 +87,8 @@ Stable Diffusion Inpainting
       ▼
 Professional Corporate Headshot
 
-* Powered by
 ```
+* Powered by
 
 * Stable Diffusion Inpainting
 * MediaPipe Pose
@@ -165,7 +165,7 @@ Logs include
 
 ##                 Architecture
 
-                   
+```                   
   Camera
      │
      ▼
@@ -184,7 +184,7 @@ FastAPI
                      │
                      ▼
               Enhanced Output
-
+```
 
 ## Technology Stack
 
