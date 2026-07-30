@@ -72,8 +72,6 @@ Automatically improves images using computer vision.
 
 Pipeline
 
-
-```text
 Upload Image
       │
       ▼
@@ -118,13 +116,8 @@ Professional Corporate Headshot
 
 Pipeline
 
-
-Use
-
-````md
 ### OCR Workflow
 
-```text
 Image / Camera
       │
       ▼
