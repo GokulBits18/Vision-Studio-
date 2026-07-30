@@ -1,80 +1,314 @@
-#  Vision Studio
+# Vision Studio
 
-Vision Studio is a comprehensive, full-stack Artificial Intelligence application designed to process, analyze, and enhance media in real-time. It features a unique hybrid architecture, blending lightning-fast local AI inference with heavy remote deep learning models hosted on Hugging Face and Kaggle.
+A Full-Stack AI Media Studio powered by Computer Vision, Deep Learning, Real-Time Streaming, and Generative AI.
 
-##  Core Features
+Vision Studio is an advanced AI-powered media processing platform that combines real-time computer vision, AI image enhancement, OCR, speech synthesis, and generative image editing into a single application.
 
-*   ** Live Stream Radar:** Low-latency, real-time object tracking and detection via WebSockets.
-*   ** Context-Aware Smart OCR:** Extracts text from images (English & Japanese), identifies the core subject, fetches real-time definitions via the **Wikipedia API**, and synthesizes it into natural speech.
-*   ** Live Filters & Smart Editor:** Dynamic, AI-driven visual effects (Neo Edges, Vintage, Pencil) and intelligent image manipulation (CLAHE auto-enhancement, background isolation) applied on the fly.
-*   ** Generative Studio Edit:** Advanced subject isolation and dynamic background/clothing inpainting utilizing remote Kaggle GPU pipelines.
-*   ** Generative 4K Restoration:** Upscales image resolution and restores crisp facial/environmental details.
+Unlike traditional AI editors, Vision Studio uses a hybrid AI architecture that intelligently splits workloads between local inference and cloud GPU acceleration, enabling low-latency performance while supporting computationally intensive image generation.
 
-##  Tech Stack & Architecture
+## Preview
+┌──────────────────────────────────────────┐
+│              Vision Studio               │
+├──────────────────────────────────────────┤
+│  Air Canvas        Live Filters          │
+│  Smart Editor      Professional Look     │
+│  Resolution Engine Smart OCR             │
+└──────────────────────────────────────────┘
 
-**Frontend:**
-*   React.js (Vite) & Tailwind/CSS for responsive UI components.
+## Features
 
-**Backend & Local AI Inference:**
-*   **Python & FastAPI:** High-speed API endpoints and WebSocket streaming.
-*   **OpenCV & NumPy:** Core image matrix processing, CLAHE enhancement, and live stream filtering.
-*   **YOLO (`yolo26n.pt`):** Local state-of-the-art real-time Object Detection.
-*   **MediaPipe:** Real-time body pose tracking (`mp.solutions.pose`) for precise inpaint masking, and selfie segmentation for subject isolation.
-*   **EasyOCR:** Robust text extraction configured for multi-language ('en', 'ja') support.
-*   **Kokoro-82M:** A highly efficient local Text-to-Speech pipeline (`lang_code='j'`) for natural voice synthesis.
+### Air Canvas
 
-**Cloud, APIs & Remote Inference:**
-*   **Kaggle GPU Servers:** Heavy Generative AI processing is offloaded to a custom Kaggle Gradio server, connected to the backend via a secure API tunnel (`gradio_client`).
-*   **Hugging Face:** Seamlessly integrated with `sczhou/CodeFormer` for advanced facial and image restoration.
-*   **Wikipedia API:** Dynamically queried to provide contextual definitions for text recognized by the OCR engine.
+Control a virtual drawing canvas using only hand gestures.
 
-##  Getting Started
+### Capabilities
 
-### Prerequisites
-Make sure you have Node.js and Python 3.x installed on your local machine.
+* MediaPipe Hand Tracking
+* Finger Gesture Detection
+* Real-time Drawing
+* Multiple Brush Colors
+* Canvas Export
+* YOLO Object Detection Overlay
+* WebSocket Live Streaming
 
-### 1. Clone the repository
-\`\`\`bash
+## Live AI Filters
+
+* Real-time webcam filters powered by OpenCV.
+
+### Available filters
+
+* Sketch
+* Neon Edge Detection
+* Background Blur
+* Vintage
+* Black & White Film
+* Normal Camera
+
+### Features
+
+* Live webcam streaming
+* WebSocket communication
+* Zero-delay processing
+* One-click download
+
+## Smart Editor
+
+Automatically improves images using computer vision.
+
+### Capabilities
+
+* CLAHE Auto Enhancement
+* AI Subject Isolation
+* Transparent Background Generation
+* PNG Export
+
+## Professional Look AI
+
+* Transforms ordinary portraits into professional corporate headshots.
+
+Pipeline
+
+Upload Image
+      │
+      ▼
+MediaPipe Pose Detection
+      │
+      ▼
+Automatic Mask Generation
+      │
+      ▼
+Kaggle GPU
+Stable Diffusion Inpainting
+      │
+      ▼
+Professional Corporate Portrait
+
+* Powered by
+
+* Stable Diffusion Inpainting
+* MediaPipe Pose
+* Kaggle GPU
+* Gradio API
+
+## Resolution Engine
+
+* AI-powered image restoration.
+
+### Supports
+
+* 4K Image Upscaling
+* Face Restoration
+* Fidelity Control Slider
+* Cinematic Blur
+
+* Powered by
+
+* CodeFormer
+* OpenCV
+* Hugging Face Inference
+
+## Smart OCR
+
+* Extracts text and converts it into meaningful speech.
+
+Pipeline
+
+Image
+   │
+   ▼
+EasyOCR
+   │
+   ▼
+Wikipedia Search
+   │
+   ▼
+Context Generation
+   │
+   ▼
+Kokoro TTS
+   │
+   ▼
+Natural Voice
+
+Features
+
+* OCR
+* Context-aware definitions
+* Wikipedia integration
+* Natural speech generation
+* Adjustable playback speed
+
+## Session Activity Center
+
+Tracks every operation performed during the current session.
+
+Logs include
+
+* Uploads
+* Downloads
+* AI Processing
+* Generated Images
+* OCR Operations
+* Filter Changes
+
+##                 Architecture
+
+                    React Frontend
+                           │
+                REST API + WebSockets
+                           │
+                     FastAPI Backend
+                           │
+      ┌────────────────────┼─────────────────────┐
+      │                    │                     │
+      ▼                    ▼                     ▼
+ Local AI            Cloud AI              External APIs
+(OpenCV)          (Kaggle GPU)          Wikipedia API
+(MediaPipe)      Stable Diffusion
+(YOLO)
+(EasyOCR)
+(Kokoro)
+(CodeFormer)
+
+## Technology Stack
+
+### Frontend
+
+* React
+* Vite
+* CSS3
+* React Webcam
+  
+###  Backend
+
+* FastAPI
+* Python
+* Uvicorn
+* WebSockets
+* OpenCV
+* NumPy
+
+## AI Models
+
+| Model                         | Purpose                    |
+| ----------------------------- | -------------------------- |
+| MediaPipe Hands               | Gesture Tracking           |
+| MediaPipe Pose                | Pose Detection             |
+| MediaPipe Selfie Segmentation | Background Removal         |
+| YOLO                          | Real-Time Object Detection |
+| EasyOCR                       | OCR                        |
+| Kokoro TTS                    | Speech Synthesis           |
+| Stable Diffusion Inpainting   | Professional Look          |
+| CodeFormer                    | Face Restoration           |
+| EDSR                          | Image Upscaling            |
+
+
+## Project Structure
+
+Vision-Studio
+│
+├── frontend
+│   ├── App.jsx
+│   ├── AirCanvas
+│   ├── Smart OCR
+│   ├── Smart Editor
+│   ├── Filters
+│   ├── Resolution Engine
+│   └── Professional Look
+│
+├── backend
+│   ├── main.py
+│   ├── YOLO
+│   ├── OCR
+│   ├── TTS
+│   ├── WebSockets
+│   ├── Smart Editor
+│   ├── Resolution Engine
+│   └── Studio Edit
+│
+└── kaggle
+    └── Stable Diffusion Inpainting Server
+
+## Installation
+
+### Clone the repository
+
 git clone https://github.com/GokulBits18/Vision-Studio-.git
-cd Vision-Studio--01
-\`\`\`
 
-### 2. Frontend Setup
-Navigate to the frontend directory, install dependencies, and start the Vite server:
-\`\`\`bash
-cd frontend
-npm install
-npm run dev
-\`\`\`
+### Frontend
 
-### 3. Backend Setup
-Navigate to the backend directory, set up your virtual environment, and install requirements:
-\`\`\`bash
-cd ../backend
-python -m venv vision
+* cd frontend
 
-# Activate virtual environment (Windows)
-vision\Scripts\activate
+* npm install
 
-# Install dependencies
-pip install -r requirements.txt
-\`\`\`
+* npm run dev
 
-### 4. Environment Variables
-Create a `.env` file in the `backend/` directory and add your access tokens:
-\`\`\`env
-HF_TOKEN=your_huggingface_token
-KAGGLE_API_URL=your_remote_kaggle_gradio_tunnel_url
-\`\`\`
+### Backend
 
-### 5. Run the Backend Server
-Start the Uvicorn server to power the AI endpoints:
-\`\`\`bash
-uvicorn main:app --reload
-\`\`\`
+* cd backend
 
-## Model Weights
-Due to GitHub file size limits, large pre-trained local model files are not hosted in this repository. Ensure you have downloaded the necessary weights (e.g., `yolo26n.pt`, `EDSR_x4.pb`) and placed them in the `backend/` directory before starting the server.
+* python -m venv vision
 
-##  Author
-**0100011101101111011010110111010101101100**
+* vision\Scripts\activate
+
+* pip install -r requirements.txt
+
+* uvicorn main:app --reload
+
+
+## Environment Variables
+
+* Create a .env
+
+* HF_TOKEN=your_huggingface_token
+
+* KAGGLE_API_URL=your_gradio_url
+
+  ## Required Model Files
+
+*  Required Model Files
+
+* yolo26n.pt
+
+* EDSR_x4.pb
+
+## AI Workflow
+
+  Camera
+     │
+     ▼
+React Frontend
+     │
+     ▼
+FastAPI
+     │
+     ├────────► OpenCV
+     ├────────► MediaPipe
+     ├────────► YOLO
+     ├────────► EasyOCR
+     ├────────► Kokoro
+     ├────────► CodeFormer
+     └────────► Stable Diffusion
+                     │
+                     ▼
+              Enhanced Output
+
+## Future Improvements 
+
+* Video Super Resolution
+* Multi-language OCR
+* Image Captioning
+* Face Swapping
+* AI Background Generation
+* Video Editing
+* Image-to-Image Generation
+* AI Avatar Creation
+* Local LLM Assistant
+* Batch Image Processing
+
+## Author
+
+### Gokul 
+
+AI • Computer Vision • Deep Learning • Full-Stack AI Development
+
