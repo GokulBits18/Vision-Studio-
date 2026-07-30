@@ -72,6 +72,7 @@ Automatically improves images using computer vision.
 
 Pipeline
 
+```text
 Upload Image
       │
       ▼
@@ -87,6 +88,7 @@ Stable Diffusion Inpainting
 Professional Corporate Headshot
 
 * Powered by
+```
 
 * Stable Diffusion Inpainting
 * MediaPipe Pose
@@ -118,6 +120,7 @@ Pipeline
 
 ### OCR Workflow
 
+```
 Image / Camera
       │
       ▼
@@ -137,6 +140,7 @@ Kokoro TTS
       │
       ▼
 Voice Output
+```
 
 Features
 
