@@ -72,6 +72,8 @@ Automatically improves images using computer vision.
 
 Pipeline
 
+
+```text
 Upload Image
       │
       ▼
@@ -81,11 +83,10 @@ MediaPipe Pose Detection
 Automatic Mask Generation
       │
       ▼
-Kaggle GPU
 Stable Diffusion Inpainting
       │
       ▼
-Professional Corporate Portrait
+Professional Corporate Headshot
 
 * Powered by
 
@@ -117,22 +118,32 @@ Professional Corporate Portrait
 
 Pipeline
 
-Image
-   │
-   ▼
+
+Use
+
+````md
+### OCR Workflow
+
+```text
+Image / Camera
+      │
+      ▼
 EasyOCR
-   │
-   ▼
-Wikipedia Search
-   │
-   ▼
+      │
+      ▼
+Extract Text
+      │
+      ▼
+Wikipedia API
+      │
+      ▼
 Context Generation
-   │
-   ▼
+      │
+      ▼
 Kokoro TTS
-   │
-   ▼
-Natural Voice
+      │
+      ▼
+Voice Output
 
 Features
 
@@ -157,22 +168,28 @@ Logs include
 
 ##                 Architecture
 
-                    React Frontend
-                           │
-                REST API + WebSockets
-                           │
-                     FastAPI Backend
-                           │
-      ┌────────────────────┼─────────────────────┐
-      │                    │                     │
-      ▼                    ▼                     ▼
- Local AI            Cloud AI              External APIs
-(OpenCV)          (Kaggle GPU)          Wikipedia API
-(MediaPipe)      Stable Diffusion
-(YOLO)
-(EasyOCR)
-(Kokoro)
-(CodeFormer)
+                   
+````md
+## AI Workflow
+
+```text
+React Frontend
+       │
+       ▼
+FastAPI Backend
+       │
+       ├──────────────┐
+       │              │
+       ▼              ▼
+Local AI         Cloud AI
+(OpenCV)       (Kaggle GPU)
+       │              │
+       └──────┬───────┘
+              ▼
+      Processed Result
+              ▼
+        React Interface
+```
 
 ## Technology Stack
 
@@ -209,30 +226,38 @@ Logs include
 
 ## Project Structure
 
-Vision-Studio
+```text
+Vision-Studio/
 │
-├── frontend
-│   ├── App.jsx
-│   ├── AirCanvas
-│   ├── Smart OCR
-│   ├── Smart Editor
-│   ├── Filters
-│   ├── Resolution Engine
-│   └── Professional Look
-│
-├── backend
+├── backend/
 │   ├── main.py
-│   ├── YOLO
-│   ├── OCR
-│   ├── TTS
-│   ├── WebSockets
-│   ├── Smart Editor
-│   ├── Resolution Engine
-│   └── Studio Edit
+│   ├── routes/
+│   ├── models/
+│   ├── utils/
+│   ├── requirements.txt
+│   └── .env
 │
-└── kaggle
-    └── Stable Diffusion Inpainting Server
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── AIFilters.jsx
+│   │   ├── SmartOCR.jsx
+│   │   ├── SmartImageEditor.jsx
+│   │   ├── ProfessionalLookAI.jsx
+│   │   ├── ResolutionEngine.jsx
+│   │   ├── HandGestureCanvas.jsx
+│   │   ├── FileHistory.jsx
+│   │   └── App.css
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+├── kaggle/
+│   └── stable_diffusion_server.ipynb
+│
+├── README.md
 
+```
 ## Installation
 
 ### Clone the repository
