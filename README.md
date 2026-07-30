@@ -6,8 +6,18 @@ Vision Studio is an advanced AI-powered media processing platform that combines 
 
 Unlike traditional AI editors, Vision Studio uses a hybrid AI architecture that intelligently splits workloads between local inference and cloud GPU acceleration, enabling low-latency performance while supporting computationally intensive image generation.
 
+
 ## Preview
-| Vision Studio | Air Canvas | Live Filters | Smart Editor | Professional Look | Resolution Engine | Smart OCR |
+
+| Feature | Description |
+|---------|-------------|
+| Air Canvas | Hand Gesture Drawing |
+| Live Filters | Real-Time AI Filters |
+| Smart Editor | Auto Enhancement |
+| Professional Look | AI Corporate Headshots |
+| Resolution Engine | 4K Restoration |
+| Smart OCR | OCR + Voice Assistant |
+
 
 ## Features
 
