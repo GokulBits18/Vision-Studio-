@@ -99,7 +99,7 @@ Professional Corporate Headshot
 
 * AI-powered image restoration.
 
-### Supports
+## Supports
 
 * 4K Image Upscaling
 * Face Restoration
@@ -169,27 +169,25 @@ Logs include
 ##                 Architecture
 
                    
-````md
-## AI Workflow
-
-```text
+  Camera
+     │
+     ▼
 React Frontend
-       │
-       ▼
-FastAPI Backend
-       │
-       ├──────────────┐
-       │              │
-       ▼              ▼
-Local AI         Cloud AI
-(OpenCV)       (Kaggle GPU)
-       │              │
-       └──────┬───────┘
-              ▼
-      Processed Result
-              ▼
-        React Interface
-```
+     │
+     ▼
+FastAPI
+     │
+     ├────────► OpenCV
+     ├────────► MediaPipe
+     ├────────► YOLO
+     ├────────► EasyOCR
+     ├────────► Kokoro
+     ├────────► CodeFormer
+     └────────► Stable Diffusion
+                     │
+                     ▼
+              Enhanced Output
+
 
 ## Technology Stack
 
@@ -303,24 +301,24 @@ git clone https://github.com/GokulBits18/Vision-Studio-.git
 
 ## AI Workflow
 
-  Camera
-     │
-     ▼
+```text
 React Frontend
-     │
-     ▼
-FastAPI
-     │
-     ├────────► OpenCV
-     ├────────► MediaPipe
-     ├────────► YOLO
-     ├────────► EasyOCR
-     ├────────► Kokoro
-     ├────────► CodeFormer
-     └────────► Stable Diffusion
-                     │
-                     ▼
-              Enhanced Output
+       │
+       ▼
+FastAPI Backend
+       │
+       ├──────────────┐
+       │              │
+       ▼              ▼
+Local AI         Cloud AI
+(OpenCV)       (Kaggle GPU)
+       │              │
+       └──────┬───────┘
+              ▼
+      Processed Result
+              ▼
+        React Interface
+```              
 
 ## Future Improvements 
 
